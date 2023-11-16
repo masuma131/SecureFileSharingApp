@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends './base.html' %}
+
+{%block title%}
+Login
+{%endblock title%}
+
+{%block contents%}
+{%if error%}
+<div class="alert alert-danger" role="alert">
+    {{error}}
+</div>
+{%endif%}
+<form action="{% url 'file_app:login' %}" method="post">
+    {% csrf_token %}
+    <div class="row lg-3">
+        <div class="col-sm-6 {%if center%} mx-auto {%endif%}">
+            {{form.as_p}}
+        </div>    
+    </div>            
+    <input class="btn btn-primary" type="submit" value="Login">
+</form>
+
+<div class="my-2">
+    <small class="text-muted">
+        Need an account ? <a class="ml-2" href="{%url 'file_app:register'%}">Sign Up</a>
+    </small>
+</div>
+{%endblock contents%}

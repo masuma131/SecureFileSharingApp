@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends './base.html' %}
+
+{% block title %}
+Share File
+{% endblock title %}
+
+{% block contents %}
+<div>
+    <h3>Share File</h3>
+    <form method="post" action="{% url 'file_app:share_file' file.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="file_id" value="{{ file.id }}">
+        <p class="mt-4">Select a user to share file with:</p>
+        {{ form.shared_user }}
+        <p class="mt-4">Select permission for user </p>
+        <a href="#" class="btn btn-link">
+            <i class="bi bi-info-circle"></i>
+        </a>
+        {{ form.permission }}
+        <input class="mt-4" type="submit" value="Share with User">
+    </form> 
+</div>
+    
+{% endblock contents %}
